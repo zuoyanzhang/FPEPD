@@ -40,7 +40,7 @@ void detect2(double x1_l, double x1_r, double x2_l, double x2_r);
 
 // threepara
 void processIntervalT(double a, double b, double c, double d, double e, double f, int samples, vector<SubIntervalResultT> &results);
-void detectAndRefineT(double x1_l, double x1_r, double x2_l, double x2_r, double x3_l, double x3_r, int samples, double threshold, bool isFinalIteration);
+void detectAndRefineT(double x1_l, double x1_r, double x2_l, double x2_r, double x3_l, double x3_r, int samples, int SIZE, double threshold, bool isFinalIteration);
 void detect3(double x1_l, double x1_r, double x2_l, double x2_r, double x3_l, double x3_r);
 
 #endif //FPEPD_FUNCTION_H
