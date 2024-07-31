@@ -29,11 +29,11 @@ struct SubIntervalResultT {
 };
 // onepara
 void processInterval(double a, double b, int samples, vector<IntervalResult> &results);
-void detectAndReOne(double x_l, double x_r, int samples, double threshold, bool isFinalIteration);
+void detectAndReOne(double x_l, double x_r, int samples, int SIZE, double threshold, bool isFinalIteration);
 void detect1(double x1_l, double x1_r);
 
 // twopara
-void detectAndRefine(double x1_l, double x1_r, double x2_l, double x2_r, int samples, double threshold, bool isFinalIteration);
+void detectAndRefine(double x1_l, double x1_r, double x2_l, double x2_r, int samples, int SIZE, double threshold, bool isFinalIteration);
 void processSubInterval(double a, double b, double c, double d, int samples, vector<SubIntervalResult> &results);
 //void detectSubInterval(double a, double b, double c, double d, int samples);
 void detect2(double x1_l, double x1_r, double x2_l, double x2_r);

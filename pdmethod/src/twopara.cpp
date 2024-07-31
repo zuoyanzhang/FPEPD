@@ -1,8 +1,7 @@
 #include "function.h"
 #include "getresult.h"
 #define SAMPLES 64
-#define THRESHOLD 0.00000000001
-#define SIZE 8
+#define THRESHOLD 1.0e-11
 std::mutex mtx;
 
 void processSubInterval(double a, double b, double c, double d, int samples, vector<SubIntervalResult> &results) {
@@ -33,7 +32,7 @@ void processSubInterval(double a, double b, double c, double d, int samples, vec
     }
 }
 
-void detectAndRefine(double x1_l, double x1_r, double x2_l, double x2_r, int samples, double threshold, bool isFinalIteration = false) {
+void detectAndRefine(double x1_l, double x1_r, double x2_l, double x2_r, int samples, int SIZE, double threshold, bool isFinalIteration = false) {
     vector<SubIntervalResult> results;
     vector<thread> threads;
     for (int i = 0; i < SIZE; ++i) {
@@ -73,5 +72,6 @@ void detectAndRefine(double x1_l, double x1_r, double x2_l, double x2_r, int sam
 }
 
 void detect2(double x1_l, double x1_r, double x2_l, double x2_r) {
-    detectAndRefine(x1_l, x1_r, x2_l, x2_r, SAMPLES, THRESHOLD);
+    int SIZE = 8;
+    detectAndRefine(x1_l, x1_r, x2_l, x2_r, SAMPLES, SIZE, THRESHOLD);
 }

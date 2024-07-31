@@ -24,6 +24,7 @@
 #include <limits>
 #include <atomic>
 #include <tuple>
+#include <bitset>
 
 
 using std::cout;

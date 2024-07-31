@@ -25,5 +25,5 @@ int main(int argc, char *argv[]) {
         double x3_r = atof(argv[6]);
         detect3(x1_l, x1_r, x2_l, x2_r, x3_l, x3_r);
     }
-    return true;
+    return 0;
 }
