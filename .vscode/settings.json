@@ -52,6 +52,13 @@
         "unordered_map": "cpp",
         "variant": "cpp",
         "vector": "cpp",
-        "algorithm": "cpp"
-    }
+        "algorithm": "cpp",
+        "deque": "cpp",
+        "memory": "cpp",
+        "forward_list": "cpp",
+        "print": "cpp",
+        "queue": "cpp",
+        "stack": "cpp"
+    },
+    "editor.tabSize": 2
 }

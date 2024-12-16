@@ -17,8 +17,6 @@ double computeULP(double y)
     int expmin = 0, expmax = 0, expmiddle = 0, jioupanduan = 0;
     x = fabs(y);
 
-    //  printf("res=%.8f\n",pow(2,logb(x)+1-53));
-
     if (x < pow(2, -1021))
         res = pow(2, -1074);
     else if (x > (1 - pow(2, -53)) * pow(2, 1024))
@@ -66,8 +64,6 @@ float computeULPf(float y)
     float x = 0, res = 0, powermin = 0, powermax = 0, powermiddle = 0;
     int expmin = 0, expmax = 0, expmiddle = 0, jioupanduan = 0;
     x = fabs(y);
-
-    //  printf("res=%.8f\n",pow(2,logb(x)+1-53));
 
     if (x < pow(2, -125))
         res = pow(2, -149);
