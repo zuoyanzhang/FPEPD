@@ -433,7 +433,8 @@ void detect2(double x1_l, double x1_r, double x2_l, double x2_r) {
     const int range1 = static_cast<int>(x1_r - x1_l);
     const int range2 = static_cast<int>(x2_r - x2_l);
     const int range = std::min(range1, range2);
-    const int SIZE = (range <= 10000) ? 10 : static_cast<int>(ceil(sqrt (range / 100)));
+    // const int SIZE = (range <= 10000) ? 10 : (10 + static_cast<int>(ceil(log2(range))));
+    const int SIZE = (range <= 10000) ? 10 : (10 + static_cast<int>(ceil(log2(range))));
     
     total_points_tested2 = 0;
     constexpr double THRESHOLD = 1e-9;

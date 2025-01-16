@@ -27,6 +27,8 @@
 #include <bitset>
 #include <queue>
 #include <arm_neon.h>
+#include <atomic>
+#include <condition_variable>
 
 using std::cout;
 using std::cin;

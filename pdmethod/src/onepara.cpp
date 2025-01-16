@@ -373,7 +373,7 @@ void detect1(double x1_l, double x1_r) {
     const ErrorLevel level = determineErrorLevel(initial_max_error);
     
     const int range = static_cast<int>(x1_r - x1_l);
-    const int SIZE = (range <= 10000) ? 100 : static_cast<int>(ceil(sqrt(range)));
+    const int SIZE = (range <= 10000) ? 100 : (100 + static_cast<int>(ceil(log2(range))));
     
     total_points_tested1 = 0;
     constexpr double THRESHOLD = 1e-9;

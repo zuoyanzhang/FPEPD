@@ -155,7 +155,7 @@ double performInitialDetection3(double x1_l, double x1_r, double x2_l, double x2
         const double x2 = dis2(gen);
         const double x3 = dis3(gen);
         const double origin = getDoubleOfOrigin3(x1, x2, x3);
-        max_error = std::max(max_error, getRelativeError3(x1, x2, x3, origin));
+        max_error = std::max(max_error, getULP3(x1, x2, x3, origin));
     }
     total_points_tested3 += QUICK_SAMPLES;
     return max_error;
@@ -190,7 +190,7 @@ void processIntervalTemplate3(double a, double b, double c, double d, double e, 
         const double x2 = dis2(gen);
         const double x3 = dis3(gen);
         const double origin = getDoubleOfOrigin3(x1, x2, x3);
-        const double error = getRelativeError3(x1, x2, x3, origin);
+        const double error = getULP3(x1, x2, x3, origin);
         if (error > quick_max_error) {
             quick_max_error = error;
             quick_max_point = {x1, x2, x3};
@@ -227,7 +227,7 @@ void processIntervalTemplate3(double a, double b, double c, double d, double e, 
             const double origin = getDoubleOfOrigin3(std::get<0>(variant),
                                                    std::get<1>(variant),
                                                    std::get<2>(variant));
-            const double error = getRelativeError3(std::get<0>(variant),
+            const double error = getULP3(std::get<0>(variant),
                                                  std::get<1>(variant),
                                                  std::get<2>(variant),
                                                  origin);
@@ -296,11 +296,12 @@ void detectAndRefineTemplate3(double x1_l, double x1_r,
         });
 
     if (isFinalIteration) {
-        printf("Final Iteration - Maximum Relative Error: %e, at X1: %.16lf, at X2: %.16lf, at X3: %.16lf\n",
-               maxIt->maxUlp, 
-               std::get<0>(maxIt->maxUlpPoint),
-               std::get<1>(maxIt->maxUlpPoint),
-               std::get<2>(maxIt->maxUlpPoint));
+        // printf("Final Iteration - Maximum Relative Error: %e, at X1: %.16lf, at X2: %.16lf, at X3: %.16lf\n",
+        //        maxIt->maxUlp, 
+        //        std::get<0>(maxIt->maxUlpPoint),
+        //        std::get<1>(maxIt->maxUlpPoint),
+        //        std::get<2>(maxIt->maxUlpPoint));
+        printf("bits error = %.1lf\n", log2(maxIt->maxUlp + 1));
         printf("Total points tested: %llu\n", total_points_tested3.load());
         return;
     }
@@ -340,7 +341,8 @@ void detect3(double x1_l, double x1_r, double x2_l, double x2_r, double x3_l, do
     const int range2 = static_cast<int>(x2_r - x2_l);
     const int range3 = static_cast<int>(x3_r - x3_l);
     const int range = std::min({range1, range2, range3});
-    const int SIZE = (range <= 10000) ? 5 : static_cast<int>(ceil(cbrt(range / 10)));
+    // const int SIZE = (range <= 10000) ? 5 : static_cast<int>(ceil(cbrt(range / 10)));
+    const int SIZE = (range <= 10000) ? 5 : (5 + static_cast<int>(ceil(log2(range))));
     
     total_points_tested3 = 0;
     constexpr double THRESHOLD = 1e-9;
